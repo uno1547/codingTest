@@ -6,7 +6,7 @@ console.log(caseNum)
 let words = []
 for(i = 1; i <= caseNum; i++) {
   if(!words.includes(input[i])) {words.push(input[i])}
-} //중복 제거하는 다른 방법이있나 ?
+} //중복 제거하는 다른 방법이있나 ? 집합자료형사용 넣는거 시간복잡도N임
 words.sort(function(a, b) {
   if(a.length != b.length) {
     return a.length - b.length
@@ -21,3 +21,30 @@ for(word of words) {
   result += `${word}\n`
 }
 console.log(result)
+/*
+let fs = require('fs')
+let input = fs.readFileSync('/dev/stdin').toString().split('\n')
+let caseNum = Number(input[0])
+let words = []
+for (i = 1; i <= caseNum; i++) {
+  words.push(input[i])
+}
+let set = new Set(words)
+let newArr = [...set]
+newArr.sort(function(a, b) {
+  if (a.length == b.length) {
+    if (a < b) {
+      return -1
+    } else {
+      return 1
+    }
+  } else {
+    return a.length - b.length
+  }
+})
+let result = ""
+for (word of newArr) {
+    result += `${word} \n`
+}
+console.log(result)
+*/

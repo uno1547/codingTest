@@ -11,3 +11,19 @@ nums.sort(function(a, b) {
 for(i = 0; i < length; i++) {
   console.log(nums[i])
 }
+
+/* 입출력의 형식이랑 index헷갈리지말기!! 성공
+let fs = require('fs')
+let input = fs.readFileSync('/dev/stdin').toString().split('\n').map(Number)
+let num = input[0]
+let sorted = []
+for (i = 1; i < num; i++) {
+  sorted.push(input[i])
+}
+sorted.sort((a, b) => a - b)
+let result = ""
+for (num of sorted) {
+  result += num + '\n'
+}
+console.log(result)
+*/

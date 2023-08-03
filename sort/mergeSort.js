@@ -18,7 +18,7 @@ function merge(arr, left, mid, right) { //정말 와닿지않음
   }
 }
 function mergeSort(arr, left, right) {
-  console.log(arr, left, right)
+  //원소1개면 정렬완료된 상태라고봄 console.log(arr, left, right)
   if (left < right) {
     let mid = parseInt((left+right) / 2)
     mergeSort(arr, left, mid)
