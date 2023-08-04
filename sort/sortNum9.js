@@ -1,4 +1,5 @@
 //10814번 한번에 성공 
+/*
 let fs = require('fs')
 let input = fs.readFileSync('input.txt').toString().split('\n')
 // console.log(input)
@@ -25,3 +26,25 @@ for(i = 0; i < Nums; i++) {
 }
 console.log(result)
 // console.log(members)
+*/
+
+//두번째시도
+
+let fs = require('fs')
+let input = fs.readFileSync('/dev/stdin').toString().split('\n')
+let Nums = Number(input[0])
+let members = []
+for(i = 1; i <= Nums; i++) {
+  members.push(input[i].split(' '))
+}
+members.sort(function(a, b) {
+  if (a[0] == b[0]) { // 나이가 같으면 아무처리 안하면 저절로 원래 순서 유지 
+  } else { // 나이가 다르면 
+    return a[0] - b[0]
+  }
+})
+result = ""
+for (member of members) {
+  result += `${member[0]} ${member[1]} \n`
+}
+console.log(result)
