@@ -27,7 +27,7 @@ console.log(result)
 */
 // DBcode
 
-//두번째시도
+//두번째시도 성공
 /*
 let fs = require('fs')
 let input = fs.readFileSync('input.txt').toString().trim().split('').map(Number)
