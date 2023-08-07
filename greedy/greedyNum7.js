@@ -1,4 +1,5 @@
 //문제 7번 신입사원 1946번 왜틀림 슬라이싱 하는 방식바꾸고, 객체 아닌 배열 하지만 아마도 rest만드는 과정에서 메모리 초과발생하는듯함
+/*
 let fs = require('fs')
 let input = fs.readFileSync('/dev/stdin').toString().trim().split('\n')
 let caseNum = Number(input[0])  //2 
@@ -29,6 +30,9 @@ for (let i = 0; i < caseNum; i++) { // 각표본 slice후 빈배열에 추가,ca
   }
   console.log(cnt)
 }
+*/
+
+
 /*let fs = require('fs')
 let input = fs.readFileSync('input.txt').toString().trim().split('\n')
 let caseNum = Number(input[0])  //2 
@@ -63,6 +67,8 @@ for (let i = 0; i < caseNum; i++) {
   line += n + 1
 }
 */
+
+
 /*let fs = require('fs')
 let input = fs.readFileSync('input.txt').toString().trim().split('\n')
 let caseNum = Number(input[0])
@@ -114,6 +120,8 @@ for (let i = 0; i < caseNum; i++) {
   console.log(cnt)
 }
 */
+
+
 /*let fs = require('fs')
 let input = fs.readFileSync('input.txt').toString().trim().split('\n')
 let caseNum = Number(input[0]) // testcase 의 개수 2
@@ -162,6 +170,8 @@ for (let i = 0; i < caseNum; i++) { // i = 0,1
   console.log(cnt)
 }
 */
+
+
 /* 얘는 안틀릴줄알앗는데 ;;
 let fs = require('fs')
 let input = fs.readFileSync('input.txt').toString().trim().split('\n')
@@ -205,6 +215,8 @@ for (let i = 1; i < input.length; i++) {
   //let sample = input.slice(start, end) 길이가 1이아닌 부분 읽으면 start,end정의안돼서 못읽을듯 
 }
 */
+
+
 /* 모든 값 console찍어봤을때 이상없음 이제보니깐 caseNum = 2를 안씀 
 let fs = require('fs')
 let input = fs.readFileSync('input.txt').toString().trim().split('\n')
@@ -255,3 +267,45 @@ for (let i = 1; i < input.length; i++) {
 }
 //intv${emps[i].intv}    30번줄 , 자리
 */
+
+//두번째 시도 8/5 개귀찮은 문제 정렬된 사원배열에서 자신보다 상위사원들 한번더 순회할때 이중 반복문쓰면 시간복잡도 N^2이기에 시간초과 
+let fs = require('fs')
+let input = fs.readFileSync('./input.txt').toString().trim().split('\n')
+let caseNum = Number(input[0]) 
+let endIndex = 1
+for (let i = 0; i < caseNum; i++) { //3개의 테스트케이스, 최대합격자수 출력
+  let startIndex = endIndex + 1
+  endIndex = startIndex + Number(input[endIndex])
+  let strPool = input.slice(startIndex, endIndex)
+  let pool = strPool.map((value) => value.split(' ').map(Number))
+  let cnt = 0
+  pool.sort(function(a, b) { // a,b = '3 2', '1 4'
+    return a[0] - b[0]
+  })
+  let minGrade = 100001
+  for (let i = 0; i < pool.length; i++) { //서류순위로 정렬된사원순회 여기서 시간복잡도 N^2이 아니라 N으로 품 > 최솟값찾고, 그냥 읽으면서 비교해도 합격자수 계산          
+    if (pool[i][1] < minGrade) {
+      minGrade = pool[i][1]
+      // console.log(minGrade)
+      cnt += 1
+    }
+  }
+  console.log(cnt)
+  /* 시간복잡도가 N^2이라 안됌
+  for (let i = 0; i < pool.length; i++) { //서류순위로 정렬된사원순회
+    // console.log(`currentpool : ${pool[i]}`)
+    let pass = true
+    for (let j = 0; j < i; j++) { //자신보다 서류순위 상위인사람과 면접순위비교  
+      // console.log(`rival : ${pool[j]}`)
+      if (pool[i][2] > pool[j][2]) {
+        // console.log(`rival ${pool[j]} 에게 패배`)
+        pass = false
+        break
+      }
+    }
+    if (pass) {
+      cnt += 1
+    }
+  }
+  */
+}
