@@ -1,4 +1,5 @@
 //문제 10번 풍선맞추기 11509번 시간초과뜸
+/*
 let fs = require('fs')
 let input = fs.readFileSync('input.txt').toString().trim().split('\n')
 let n = Number(input[0])
@@ -18,17 +19,8 @@ while (arr.length != 0) {
   }
 }
 console.log(cnt)
+*/
 /*
-let fs = require('fs')
-let input = fs.readFileSync('input.txt').toString().trim().split('\n')
-let n = Number(input[0])
-let arr = input[1].split(' ').map(Number)
-console.log(n, arr) //[2, 1, 5, 4, 3]
-let maxHeight = Math.max(...arr) //5
-let maxIndex = 1 //1
-let arrowHeight = maxHeight
-let rmvIndex = []
-
 for (let i = maxIndex; i < arr.length; i++) {
   if (arrowHeight == arr[i]) { //화살높이 == 풍선높이 > 풍선터트리고,화살높이-1
     rmvIndex.push(i)
@@ -57,11 +49,7 @@ while (arr.length != 0) { // arr.length(전체풍선개수) == 0 일때까지 �
     } 
   }
 }
-let fs = require('fs')
-let input = fs.readFileSync('input.txt').toString().trim().split('\n')
-let n = Number(input[0])
-let arr = input[1].split(' ').map(Number)
-console.log(`길이 n은 ${n}이고, arr 는${arr}`) //[2, 1, 5, 4, 3]
+
 let cnt = 0
 while (arr.length != 0) {
   let maxHeight = Math.max(...arr) //5
@@ -107,3 +95,32 @@ while (arr.length != 0)  { // arr.length(전체풍선개수) == 0 일때까지 �
   }
   minHeight = Math.min(...arr)
 */
+
+//두번째 시도 8/9일 성공!! 
+let fs = require('fs')
+let input = fs.readFileSync('input.txt').toString().trim().split('\n')
+let num = Number(input[0])
+let ballons = input[1].split(' ').map(Number)
+console.log(num, ballons) //[2,1,5,4,3]
+let maxIndex = 0
+let cnt = 0
+let done = false
+while (!done) {
+  for (let i = 0 ; i < num; i++) {
+    if (ballons[i] > ballons[maxIndex]) {
+      maxIndex = i
+    }
+  } // 최대높이의 index추출, 최대고도에서 화살발사
+  cnt += 1
+  console.log(`${cnt}번째 화살`)
+  let arrowHeight = ballons[maxIndex] //5
+  for (let j = maxIndex; j < num; j++) {// 최대높이의 풍선의 index 부터 오른쪽 배열 살펴보고 연속으로 터트리게해야함
+    if (arrowHeight == ballons[j]) {
+      ballons[j] = 0
+      arrowHeight -= 1
+    }
+  }
+  console.log(ballons)
+  done = ballons.every((value) => value == 0)
+}
+console.log(cnt)

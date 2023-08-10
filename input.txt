@@ -1,6 +1,5 @@
-v1 = input()
-v2 = input()
-result = var1 + var2
-print(result)
-and held your hand should have when i had the chance 
-cause all you wanted to do was dance now my baby's dancing 
+4 4 8
+3
+0 10
+1 10
+2 1
