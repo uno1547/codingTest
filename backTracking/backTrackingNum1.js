@@ -17,7 +17,7 @@ function BT(n, list) {
     return
   }
   for (let i = 1; i <= number; i++) {
-    if (visited[i] == 0) { //중복되지않으면
+    if (visited[i] == 0) {
       visited[i] = 1
       BT(n + 1, list + `${i} `)
       visited[i] = 0
@@ -31,17 +31,6 @@ for (x of ans) {
 }
 result.trim()
 console.log(result)
-
-// for (x of ans) {
-//   for (y of x) {
-//     result += `${y} `
-//   }
-//   result.trim()
-//   result += '\n'
-// }
-// result.trim()
-// console.log(result)
-
 
 /*
 1,2,3,4 (2)

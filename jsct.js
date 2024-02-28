@@ -1,7 +1,3 @@
-const btn = document.querySelector(".btn")
-btn.addEventListener("click", function(){
-  el.style.baeckgroundcolor = 'red'
-})
 //기본적인 반복문
 function loop () {
   let sum = 0 
@@ -10,7 +6,21 @@ for(i = 0; i < 5; i++) {
 }
 }
 console.log(sum)
-//readline 모듈
+
+//********* 자바스크립트 특성상 출력만으로 시간초과 판정을 받을수있다 !! 여러줄을 출력해야할때(예를들어100줄) 한줄에 한번씩 console.log를 할경우 시간초과 받음 > 한개의 결과를 
+let ans = ''
+for (let i = 0; i <= 100; i++) {
+  ans += i + '\n'; // 답문자열을 여러줄로 만듬 
+}
+console.log(ans)
+
+//fs 모듈 : 입력데이터가 텍스트파일 형식 > 실제 테스트에서 /dev/stdin 파일에 적힌텍스트 
+let fs = require('fs')
+let input = fs.readFileSync('/dev/stdin').toString().split('\n')
+let input = fs.readFileSync('input.txt').toString().split('\n')
+console.log(input)
+
+//readline 모듈 : 특정문제에 fs모듈을 사용하지 못하게 하는경우가있음 > readline모듈을 사용하면됌
 function readl() {
 const rl = require('readline').createInterface({
   input: process.stdin, 
@@ -26,6 +36,43 @@ console.log(input);
 process.exit();
 })
 }
+
+//Number 와 String 형태변환
+//String -> Int
+let a = "777"
+let b = Number(a)
+console.log(b)
+//Int -> String
+let a = 777
+let b = String(a)
+console.log(b)
+
+//Array.prototype.reduce() 배열의 원소들에대해 특정한 연산처리할때 유용
+let data = [5, 2, 9, 8, 4]
+//최솟값구하기 
+let minValue = data.reduce((a, b) => Math.min(a, b))
+console.log(minValue)
+//원소의 합구하기 
+let summary = data.reduce((a, b) => a + b)
+console.log(summary);
+
+//배열 초기화 방법 1.리터럴방식으로 직접초기화 2. Array객체를 활용한 초기화
+let arr = [8, 1, 4, 5, 7]
+let arr = new Array(5).fill(0)
+
+//집합자료형 : 원소의 등장여부파악 
+let mySet = new Set();
+mySet.add(3);
+mySet.add(5);
+mySet.add(7);
+mySet.add(3);
+//마지막3은 중복이라 포함되지않으므로 3,5,7만 들어감 
+console.log(`원소의개수 ${mySet.size}`)
+console.log(`원소의개수 ${mySet.has(7)}`)
+mySet.delete(5) //제거
+for (let item of mySet) console.log(item)
+
+
 //두정수 입력받은후 A+B를 출력하시오 성공!!!
 function num2 () {
   let fs = require('fs')
@@ -117,6 +164,23 @@ function num8() {
   } else {
     console.log(startHour + addHour, addMinute)
   }
+}
+function num82() {
+  let fs = require('fs')
+  let input = fs.readFileSync('input.txt').toString().split('\n')
+  // console.log(input)
+  let startTime = input[0].split(' ').map(Number)
+  let minuteST = startTime[0] * 60 + startTime[1]
+  let duration = Number(input[1])
+  // console.log(minuteST, duration)
+  let endTime = minuteST + duration
+  let endHour, endMinute
+  if (endTime >= 1440) { //00시00분을 초과할경우
+    endTime -= 1440
+  }
+  endHour = parseInt(endTime / 60)
+  endMinute = parseInt(endTime % 60)
+  console.log(endHour, endMinute) 
 }
 //문제 9번(2480) 성공!! 오래걸림
 function num9() {
@@ -326,7 +390,8 @@ function num153 () { //크으으 이런방법이
   console.log(maxValue, maxValueIndex+1)
 }
 //문제 16번 (3052) 왜틀린지모르겟네 ㅋㅋㅋ 
-let fs = require('fs')
+let fs = require('fs');
+const { stringify } = require('querystring');
 let input = fs.readFileSync('/dev/stdin').toString().split('\n') 
 let inputLength = input.length
 for(i = 0; i < inputLength; i++) {
@@ -340,6 +405,7 @@ for(i = 0; i < remainders.length; i++) {
   !(newArr.includes(remainders[i])) ? newArr.push(remainders[i]) : ""
 }
 console.log(newArr.length)
+
 function num162 () {
   let fs = require('fs')
   let input = fs.readFileSync('input.txt').toString().split('\n').map(Number)
@@ -404,6 +470,29 @@ function num18() { //성공 !! reduce함수
   }
   console.log(`${sum / nums}`)
 }
+function num172() { //12/16일 성공
+  let fs = require('fs')
+  let input = fs.readFileSync('input.txt').toString().split('\n')
+  let caseNum = Number(input[0])
+  // console.log(input, caseNum)
+  let data, studentNum
+  for (let i = 1; i <= caseNum; i++) {
+  data = input[i].split(' ').map(Number)
+  studentNum = data[0]
+  // console.log(data, studentNum)
+  let sum = 0, avg, ratio = 0;
+  for (let j = 1; j <= studentNum; j++) {
+    sum += data[j]
+  }
+  // console.log(sum, studentNum)
+  avg = sum / studentNum
+  // console.log(avg)
+  for (let j = 1; j <= studentNum; j++ ) {
+    data[j] > avg ? ratio += 1 : ratio
+  }
+  console.log(`${((ratio / studentNum) * 100).toFixed(3)}%`)
+  }
+}
 function num19() { //성공!!
   let fs = require('fs')
   let input = fs.readFileSync('input.txt').toString().split('\n')
@@ -417,6 +506,20 @@ function num19() { //성공!!
     sum += nums[i]
   }
   console.log(sum)
+}
+function num192() {
+  let fs = require('fs')
+  let input = fs.readFileSync('input.txt').toString().split('\n')
+  let subNums = Number(input[0])
+  let scores = input[1].split(' ').map(Number)
+  let max = scores.reduce((a, b)=> Math.max(a, b))
+  console.log(max)
+  let sum = 0, avg
+  for (let i = 0; i < scores.length; i++) {
+    sum += (scores[i]/max * 100)
+  }
+  avg = sum / subNums
+  console.log(avg)
 }
 function num20() { //성공
   let fs = require('fs')
@@ -440,6 +543,19 @@ function num20() { //성공
     console.log(newString)
   }
 }
+function num202() {
+  let fs = require('fs')
+  let input = fs.readFileSync('input.txt').toString().split('\n')
+  let nums = Number(input[0])
+  for (let i = 1; i <= nums; i++) {
+    let [r, s] = input[i].split(" ")
+    let result = ""
+    for (let j = 0; j < s.length; j++) {
+      result += s.charAt(j).repeat(r)
+    }
+    console.log(result)
+  }
+}
 function num21() {//성공
   let fs = require('fs')
   let input = fs.readFileSync('input.txt').toString().split(' ')
@@ -456,6 +572,16 @@ function num21() {//성공
   console.log(nums)
   let max = nums.reduce((a, b) => Math.max(a, b))
   console.log(max)
+}
+function num212() {
+  let fs = require('fs')
+  let input = fs.readFileSync('input.txt').toString().split(' ')
+  let firstNum = "", secondNum = ""
+  for (let i = 2; i >= 0; i--) {
+    firstNum += input[0][i]
+    secondNum += input[1][i]
+  }
+  console.log(Math.max(firstNum, secondNum))
 }
 function num22() { //성공이라해도되나싶을정도로 오래걸림 ;; 
   let fs = require('fs')
