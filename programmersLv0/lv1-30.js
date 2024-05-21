@@ -69,5 +69,6 @@ while(index <= num) {
 
 //다른사람의 전체정담
 function gcdlcm(a, b) {
-
+  let r;
+  for(let ab = a*b; ) {}
 }
