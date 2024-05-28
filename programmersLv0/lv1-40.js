@@ -74,3 +74,54 @@ for(let i=0; i< numbers.length; i++) {
 
 
 */
+
+
+function solution(s) {
+  let originStr = s
+  const originStrArr = [...s]
+  const ans = []
+  const numStr1Table = [
+      "zero",
+      "one",
+      "two",
+      "three",
+      "four",
+      "five",
+      "six",
+      "seven",
+      "eight",
+      "nine"
+  ]
+  const numStr2Table = [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+  ]
+  while(originStrArr.length != 0) {
+      let curStr
+      for(let i = 0; i < 10; i++) {
+          if(originStr.indexOf(numStr1Table[i]) == 0) {
+              curStr = numStr1Table[i]
+              ans.push(i)
+              break
+          }
+      }
+      for(let i = 0; i < 10; i++) {
+          if(originStr.indexOf(numStr2Table[i]) == 0) {
+              curStr = numStr2Table[i]
+              ans.push(i)
+              break
+          }
+      }
+      originStrArr.splice(0, curStr.length)
+      originStr = originStrArr.join('')
+  }
+  return Number(ans.join(''))
+}
