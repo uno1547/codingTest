@@ -1,4 +1,5 @@
 //QUEUE 배열로 구현 시간측면에서 비효율적이라고 함
+//아래는 자바스크립트 객체로 연결리스트처럼구현?
 class Queue {
   constructor() {
     this.items = {}
@@ -18,6 +19,7 @@ class Queue {
   peek() {
     return this.items[this.head]
   }
+  //tail 원소는 tail-1로 조회해야함!!
   size() {
     return this.tail - this.head
   }
