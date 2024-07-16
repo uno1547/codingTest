@@ -40,13 +40,15 @@ isPrime = true //시간복잡도 O(N)
 4. 5를 제외한 5의배수 모두제거
 */
 const n = 26
-const nums = []
-for(let i = 2; i <= n; i++) {
-  nums.push(i)
-}
+const arr = Array(n+1).fill(true).fill(false,0,2)
+console.log(arr);
 
-for(let i = 0; i < nums.length; i++) {
-  let tmp = nums[i]
-  //2
-  
+for(let i = 2; i * i <= n; i++) { //2부터 n의 제곱근이전의 숫자에대해
+  console.log(`${i}를 제외한 배수`);
+  if(arr[i]) { //2,3,4 등등에 대해
+    for(let j = i*i; j <= n; j+= i) {
+      console.log(j);
+      arr[j] = false
+    }
+  }
 }
