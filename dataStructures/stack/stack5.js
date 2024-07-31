@@ -1,4 +1,4 @@
-// 백준 10773 제로 성공
+// 백준 10773 제로 성공 24.7.17
 let fs = require('fs')
 let input = fs.readFileSync('/dev/stdin').toString().split('\n').map(Number)
 const n = input[0]

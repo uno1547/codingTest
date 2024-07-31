@@ -1,4 +1,4 @@
-//9012번 괄호 성공
+//9012번 괄호 성공 
 let fs = require('fs')
 let input = fs.readFileSync('input.txt').toString().trim().split('\n')
 let caseNum = Number(input[0])

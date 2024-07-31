@@ -1,4 +1,4 @@
-// 백준 28278번 스택2 
+// 백준 28278번 스택2 24.7.17
 class Stack {
   constructor() {
     this.stack = []
