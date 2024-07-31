@@ -1,5 +1,4 @@
-// 덧칠하기
-
+// 프로그래머스 덧칠하기 성공
 function solution(n, m, section) {
   let cnt = 0
   const wall = Array.from({length : n}, () => 1)
