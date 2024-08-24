@@ -1,4 +1,6 @@
 //18870번 문제 좌표압축 
+
+
 /*
 let fs = require('fs')
 let input = fs.readFileSync('input.txt').toString().split('\n')
@@ -71,7 +73,10 @@ while(arr[midIn] != value) {
 }
 console.log(`${value} 의 index는 ${midIn}`)
 */
+
+
 //위의 이분탐색 base로 indexof부분대신 넣어줌
+/*
 let fs = require('fs')
 let input = fs.readFileSync('/dev/stdin').toString().split('\n')
 let caseNum = Number(input[0])
@@ -100,3 +105,27 @@ for (x of cords) {
   result += `${x} `
 }
 console.log(result)
+*/
+
+
+// 24 / 8 / 24
+
+const fs = require('fs')
+const input = fs.readFileSync('../input.txt').toString().trim().split('\n')
+const [n, cords] = input
+const arr = cords.split(' ').map(Number)
+
+const set = new Set(arr)
+const setArr = Array.from(set)
+setArr.sort((a, b) => a - b)
+console.log(arr);
+console.log(setArr);
+const grade = setArr.reduce((dic, el, idx) => {
+  dic[el] = idx
+  return dic
+}, {})
+console.log(grade);
+for(let i = 0; i < n; i++) {
+  arr[i] = grade[arr[i]]
+}
+console.log(arr);

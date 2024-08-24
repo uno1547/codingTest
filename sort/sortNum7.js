@@ -1,4 +1,5 @@
 //1181번 *** compare function(a, b) 매개변수로 들어가는 a, b의 순서는 상관이 없다 그냥
+/*
 let fs = require('fs')
 let input = fs.readFileSync('input.txt').toString().split('\n')
 let caseNum = Number(input[0])
@@ -21,6 +22,9 @@ for(word of words) {
   result += `${word}\n`
 }
 console.log(result)
+*/
+
+
 /*
 let fs = require('fs')
 let input = fs.readFileSync('/dev/stdin').toString().split('\n')
@@ -48,3 +52,34 @@ for (word of newArr) {
 }
 console.log(result)
 */
+
+
+
+// 24 / 8 / 24
+let fs = require('fs')
+let input = fs.readFileSync('../input.txt').toString().split('\n')
+const [n, ...words] = input
+console.log(n, words);
+
+words.sort((a, b) => {
+  if(a.length !== b.length) { // 길이가 다르면 
+    return a.length - b.length
+  } else { //길이가 같다면
+    if(a < b) {
+      return -1
+    } else if(a > b) {
+      return 1
+    } else {
+      return 0
+    }
+    // return a - b
+  }
+})
+
+const set = new Set(words)
+const wordsArr = Array.from(set)
+let ans = ""
+for(let i = 0; i < wordsArr.length; i++) {
+  ans += `${wordsArr[i]}\n`
+}
+console.log(ans.trim());

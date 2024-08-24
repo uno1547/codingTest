@@ -29,7 +29,7 @@ console.log(result)
 */
 
 //두번째시도
-
+/*
 let fs = require('fs')
 let input = fs.readFileSync('/dev/stdin').toString().split('\n')
 let Nums = Number(input[0])
@@ -44,7 +44,23 @@ members.sort(function(a, b) {
   }
 })
 result = ""
-for (member of members) {
+for (let member of members) {
   result += `${member[0]} ${member[1]} \n`
 }
 console.log(result)
+*/
+
+const fs = require('fs')
+const input = fs.readFileSync('../input.txt').toString().trim().split('\n')
+const [n, ...members] = input
+console.log(members);
+for(let i = 0; i < Number(n); i++) {
+  members[i] = members[i].split(' ')
+}
+console.log(members);
+members.sort((a, b) => {
+  if(Number(a[0]) != Number(b[0])) { //나이가 같지않으면 
+    return Number(a[0]) - Number(b[0])
+  }
+})
+console.log(members);
