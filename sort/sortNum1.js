@@ -19,3 +19,6 @@ for (num of input) {
 }
 console.log(tmp)
 */
+
+// 24/ 8/ 24
+let 
