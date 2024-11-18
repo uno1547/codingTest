@@ -1,4 +1,5 @@
 // 1102 유기농배추 성공!!
+/*
 let fs = require('fs')
 let input = fs.readFileSync('../input.txt').toString().trim().split('\n')
 const caseNum = Number(input.shift())
@@ -45,6 +46,19 @@ function DFS (cactusRow, cactusCol, width, height, field, visited) {
     }
   }
 }
+
+
+*/
+
+
+
+
+
+
+
+
+
+
 /*
 const [width, height, cactusNum] = input[0].split(' ').map(Number)
 // 가로 세로 만큼의 밭 좌표계 설정
@@ -146,3 +160,35 @@ function DFS (cactusRow, cactusCol) {
   }
 }
 */
+
+
+
+// 24/11/18일 
+let fs = require('fs')
+let input = fs.readFileSync('input.txt').toString().trim().split('\n')
+// console.log(input);
+const caseNum = Number(input[0])
+
+let l = 1
+for(let i = 0; i < caseNum; i++) {
+  const [width, height, cactusNum] = input[l].split(' ').map(Number)
+  const farm = new Array(height).fill(0).map(() => new Array(width).fill(0))
+  console.log(l, width, height, cactusNum);
+  // console.log(farm);
+  for(j = l + 1; j < l + 1 + cactusNum; j++) {
+    // console.log(input[j]);
+    const [x, y] = input[j].split(' ').map(Number)
+    // console.log(x, y);
+    farm[y][x] = 1
+  }
+  console.log(farm);
+
+
+
+
+  l += cactusNum + 1
+}
+
+function dfs(x, y) {
+  
+}

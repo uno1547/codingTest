@@ -1,4 +1,5 @@
 // 백준 1240번 노드사이의 거리 실패 무슨 과정인지 이해가 안되네 ㅁㄴ애;랴ㅓㅁ;ㅐㄴ어;래ㅓㅁㅈ댜ㅐㅓㄹ;ㅐㅑㅈ더;래ㅑㅓㅈㄷ;ㅐㅑ러
+/*
 let fs = require('fs');
 const { arrayBuffer } = require('stream/consumers');
 // const { setGlobalDispatcher } = require('undici-types');
@@ -35,8 +36,9 @@ for (let i = 0; i < queryNum; i++) {
   console.log(visited, distance);
   console.log(distance[y]);
 }
+*/
 
-//[1, 2]
+
 
 /*
 알고리즘
@@ -130,4 +132,51 @@ function DFS(start, end) {
 
 DFS(3, 2)
 console.log(dist);
+*/
+
+// 24/11/18
+// 재도전 하기
+const fs = require('fs')
+const input = fs.readFileSync('input.txt').toString().trim().split('\n')
+const [n, m] = input[0].split(' ').map(Number) // 4 2
+const graph = []
+let visited, distance
+// const visited = new Array(n + 1).fill(false)
+for(let i = 1; i <= n; i++) graph[i] = [] // [e, [], [], [], []]
+console.log(graph);
+for(let i = 1; i < n; i++) {
+  const [x, y, cost] = input[i].split(' ').map(Number)
+  console.log(x, y, cost);
+  graph[x].push([y, cost])
+  graph[y].push([x, cost])
+}
+console.log(graph); // 그래프 인접리스트 형태로 초기화
+
+function dfs(x, dist) {
+  if(visited[x]) return
+  visited[x] = true
+  distance[x] = dist
+  for(let [y, cost] of graph[x]) {
+    dfs(y, dist + cost)
+  }
+}
+
+for(let i = 0; i < m; i++) {
+  const [x, y] = input[n + i].split(' ').map(Number)
+  visited = new Array(n + 1).fill(false) // 이렇게 준 이유는 let, const 로 주면 블럭스코프 > dfs에서 접근불가 > 매개변수로 넘겨줘야함
+  // 번거로우니깐 전역변수 처리 한듯?? 
+  // 전역에 let visited = []
+  // 하고 재할당한다면 동일한 동작일듯
+  distance = new Array(n + 1).fill(-1)
+  dfs(x, 0)
+  console.log(distance[y]);
+}
+
+
+
+
+/*
+노드 : 거리 형태의 key value형식으로 각 노드를 초기화(그래프 초기화)
+알고싶은 각 노드쌍에 대해서 [출발, 도착] 형식으로
+
 */
