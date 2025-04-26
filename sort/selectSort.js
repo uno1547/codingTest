@@ -26,6 +26,7 @@ const testArr = [2, 4, 3, 1, 9, 6, 8, 7, 5] // 고된성공
 
 // 선택정렬
 // 매단계에서 처리되지않은 원소중 가장작은 원소를 선택해서 앞으로 보내는 정렬방식
+// 매번 최솟값이 맨앞으로 오게된다.
 // 시간복잡도 O(N^2)
 // 특징 : 비효율적이지만 로직이 간단하고, 
 // [2,5,7,9,3,7] => [2,3,5,7,7,9]
@@ -37,10 +38,10 @@ function selectSort(arr) {
       if (arr[minIndex] > arr[j]) {
         minIndex = j
       }
-      let tmp = arr[i]
-      arr[i] = arr[minIndex]
-      arr[minIndex] = tmp
     }
+    let tmp = arr[i]
+    arr[i] = arr[minIndex]
+    arr[minIndex] = tmp
   }
 }
 
@@ -63,3 +64,21 @@ function selectionSort(arr) {
 }
 console.log(testArr);
 console.log(selectionSort(testArr));
+
+// arr = [4, 2, 1, 3]
+/*
+1단계
+*1, 2, 4, 3
+2단계
+*1, *2, 4, 3
+3단계
+*1 *2 *3 4 (4단계 갈필요없이 끝)
+4단계 
+*1 *2 *3 *4
+
+
+1 2 3 4
+정렬되어있는 배열이라 하더라도, 뒷부분을 무조건 돌면서 minIndex와의 비교를 하기때문에 
+O(N^2)
+
+*/

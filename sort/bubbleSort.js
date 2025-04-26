@@ -33,6 +33,7 @@ function bubbleSort2(arr) {
 // bubbleSort2(arr)
 // 24/3/21 
 // 어떤 글에는 정렬되어있는 상태에선 시간복잡도가 O(N)이라는데 이게 뭔말임 break를 쓰면 비교연산 안해서 outer루프만 돈다는얘긴가
+// 이건 삽입정렬 얘기아닌가
 function bubbleSort(arr) {
   for (let i = 0; i < arr.length - 1; i++) { //길이가 4면 3번만 실행해도됌!!!
     // console.log(`${i+1}번째실행`);
@@ -52,6 +53,7 @@ function bubbleSort(arr) {
 // 24/8/21
 // 버블 정렬 시간복잡도 O(N^2)
 // arr : [9, 8, 2, 4, 3]
+// 매 단계에서 제일 큰값이 제일 오른쪽으로 붙으며 정렬이 이루어진다고 생각하자 N-1단계까지만 하면된다.
 /*
 1단계(i = 0)
 8 9 2 4 3

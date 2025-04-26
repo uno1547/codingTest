@@ -1,6 +1,14 @@
 const arr = [6,8,3,6,2,5,9,1,4]
 arr.sort()
 console.log(arr)
+/*
+sort메서드의 매개변수인 comparefunction 의 반환값에 따라 정렬이 이루어딘다.
+sort((a, b) => value)
+value < 0 인경우 a b순서로 정렬
+value > 0 인경우 b a순서로 정렬
+value = 0 인경우 순서 변경안함
+*/
+
 function compare1(a, b) {
   if (a < b) {
     return -1
@@ -18,7 +26,7 @@ function compare3(a, b) { //descending
   return b - a
 }
 //arr.sort(compare2)
-arr1.sort(function(a, b) { //익명함수로 comparefunction넣어줄수있다
+arr.sort(function(a, b) { //익명함수로 comparefunction넣어줄수있다
   return a - b
 })
 

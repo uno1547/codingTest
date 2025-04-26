@@ -10,6 +10,7 @@ const graph = [ //현재 1~8번 총 8개의 노드가 존재 이를 인접 리�
   [5], //7번
   [6], //8번
 ]
+
 const visited = [false, false, false, false, false, false, false, false, false]
 function dfs(graph, v, visited) { // 그래프, 현재노드, 방문처리배열
   visited[v] = true
@@ -25,6 +26,7 @@ function dfs(graph, v, visited) { // 그래프, 현재노드, 방문처리배열
   }
   // console.log(`${v}번노드의 인접노드 탐색완료!`);
 }
+
 // dfs(graph, 0, visited) // 재귀함수로 
 // 스택으로는 어떻게하져
 
@@ -61,7 +63,7 @@ function dfs2(graph, v, visited) {
 }
 const visited2 = new Array(10).fill(false)
 
-dfs2(graph2, 1, visited2)
+// dfs2(graph2, 1, visited2)
 
 // 스택을 이용한 DFS 구현
 /*
@@ -84,11 +86,21 @@ const graph3 = [
   [4], //8번노드
   [4], //9번노드
 ]
+const graph4 = [
+  [1, 2, 4], //0
+  [0, 5], //1
+  [0, 5], //2
+  [4], //3
+  [0, 3], //4
+  [1, 2]
+]
 const visited3 = new Array(10).fill(false)
+const visited4 = new Array(7).fill(false)
+// 스택을 이용한 방법 동빈이가 말한대로 아닌가?
 function dfs3(graph, v, visited) {
   const stack = []
   stack.push(v) // 1번 push
-  console.log('시작', stack);
+  // console.log('시작', stack);
 
   while(stack.length != 0) {
     const v = stack.pop() // 꺼내고, 방문안한 노드면 방문표시
@@ -98,11 +110,16 @@ function dfs3(graph, v, visited) {
 
       for(let adj of graph[v]) {
         if (visited[adj] == false) {
-          stack.push(adj)
+          stack.push(adj) // 스택에 한번에 push가 된다!!!! 
         }
       }
-      console.log(stack);
+      // console.log(stack);
     }
   }
 }
-dfs3(graph3, 1, visited3)
+// dfs3(graph3, 1, visited3)
+// 이럴경우 방문 순서는 0 1 5 2 4 3 이 아닌 0 4 3 2 5 1이된다. 순서는 사실 상관이 없나 싶기도하고
+
+dfs3(graph4, 0, visited4)
+// 목표를 세우고 작은거라도..
+
