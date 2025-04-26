@@ -90,8 +90,29 @@ solution("12321", "42531")
 solution("5525", "1255")
 
 /*
-일부는 예외케이스로 결과가 틀리는것같고,
-일부는 시간이 오래걸림..
-
-
+일부는 예외케이스로 결과가 틀리는것같고 > Number(긴문자열)시 Infinity가 나올수도있다.!
 */
+
+let str = ""
+for(let i = 0; i < 500; i++) {
+  str += 9
+}
+
+console.log(str);
+console.log(Number(str));
+
+function solution2(){
+  let nums = [1,2,3,1,1,5,6,7,8,6]
+  /*
+  const set = new Set(nums)
+  console.log(set);
+  const arr = Array.from(set)
+  console.log(arr);
+  */
+  const arr = nums.filter((el, idx) => {
+    return idx === nums.indexOf(el)
+  })
+  console.log(arr);
+}
+solution2()
+//배열을 중복값을 제거하라
