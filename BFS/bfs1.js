@@ -1,4 +1,4 @@
-// 백준 1697번 
+// 백준 1697번 숨바꼭질 실패
 import Queue from "./Queue.js"
 import fs from 'fs'
 
@@ -11,7 +11,7 @@ const visited = new Array(MAX).fill(0)
 
 function bfs() {
   const queue = new Queue()
-  visited[n] = 1
+  // visited[n] = 1
   queue.enqueue(n)
   while(queue.getLength() != 0) {
     const cur = queue.dequeue()
