@@ -88,9 +88,10 @@ function solution(n, m, x, y, r, c, k) {
         movesLeft--
         break
       }
-      
+
     }
     
 
   }
+  return path
 }

@@ -1,7 +1,6 @@
 {
   "name": "codingtest",
   "version": "1.0.0",
-
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/uno1547/codingTest/issues"
   },
-  "homepage": "https://github.com/uno1547/codingTest#readme"
+  "homepage": "https://github.com/uno1547/codingTest#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "firebase-admin": "^13.6.0",
+    "jsonwebtoken": "^9.0.2",
+    "openai": "^6.9.1"
+  }
 }
