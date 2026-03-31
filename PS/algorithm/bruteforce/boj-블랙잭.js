@@ -29,7 +29,7 @@ for (let i = 0; i < numbers.length - 2; i++) {
 console.log(maxSum);
 */
 
-// 재귀로직으로 조합 만들기
+// 재귀로직으로 조합 만들기 이건 블랙잭이랑 무관
 function makeCombination(arr, r) {
   const result = []
 
@@ -81,11 +81,34 @@ function makeCombination(start, cnt, currentSum) {
     // 배열을 넘겨줄땐 참조에의한 호출이라서 문제가되었지만 합의경우는
     // 값에 의한 호출이라서 해줄 필요없는 로직
   }
-  return answer
 }
 
-answer = makeCombination(0, 0, 0)
+makeCombination(0, 0, 0)
 console.log(answer);
 
 
 // 10개중 서로다른 3개를 뽑는 모든 경우의 수
+
+/*
+let answer = 0;
+const visited = new Array(numbers.length).fill(false);
+
+function dfs(cnt, currentSum) {
+  // 가지치기: 합이 이미 넘었으면 중단
+  if (currentSum > jack) return;
+
+  // 3장을 다 뽑았을 때
+  if (cnt === 3) {
+    answer = Math.max(answer, currentSum);
+    return;
+  }
+
+  for (let i = 0; i < numbers.length; i++) {
+    if (!visited[i]) { // 아직 안 쓴 카드라면
+      visited[i] = true;   // [선택]
+      dfs(cnt + 1, currentSum + numbers[i]); // [재귀]
+      visited[i] = false;  // [해제] (백트래킹 핵심)
+    }
+  }
+}
+*/

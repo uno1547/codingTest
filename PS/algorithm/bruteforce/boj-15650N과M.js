@@ -8,6 +8,8 @@ const path = []
 let result = ''
 
 function dfs(depth, start) {
+
+  
   if(depth == M) {
       result += path.join(' ') + '\n'
     return

@@ -4,7 +4,7 @@ const fs = require('fs')
 const [N, M] = fs.readFileSync('./memo.txt').toString().trim().split(' ').map(Number)
 // const [N, M] = fs.readFileSync(0).toString().trim().split(' ').map(Number)
 
-console.log(N, M);
+// console.log(N, M);
 
 // 1 ~ N 까지 자연수중 중복없이 M개를 고른 수열 순서구분필요
 // 중첩 M 개의 for문으로 할수도있을것같은데 너무 비효율적일듯
@@ -35,7 +35,7 @@ arr = [1 2 3 4]
 한개고르고 남은 수들을 재료로 만들기
 */
 const arr = Array.from({length : N}, (_,idx) => idx+1)
-console.log(arr);
+// console.log(arr);
 
 const result = []
 
@@ -57,10 +57,36 @@ function makePermutation(permutation, cnt, rest) {
   }
 }
 
-makePermutation([], 0, arr)
+// makePermutation([], 0, arr)
 
 // console.log(result);
 // let tmp = ''
 
 const tmp = result.map(per => `${per.join(' ')}`).join('\n')
 console.log(tmp);
+
+
+console.log(N,M);
+
+const visited = new Array(N+1).fill(false)
+let result2 = ''
+
+function dfs(depth) {
+  if(depth == M) {
+    result2 = result2 + result.join(' ') + '\n'
+    return
+  }
+
+  for(let i = 1; i <= N; i++) {
+    if(!visited[i]) {
+      visited[i] = true
+      result.push(i)
+      dfs(depth + 1)
+      result.pop()
+      visited[i] = false
+    }
+  }
+}
+
+dfs(0)
+console.log(result2);

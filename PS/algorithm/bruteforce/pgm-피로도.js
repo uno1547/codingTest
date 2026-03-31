@@ -53,6 +53,7 @@ function solution(k, dungeons) {
 
   return answer
 }
+// solution(80, [[80,20],[50,40],[30,10]])
 
 // 백트래킹
 function solution2(k, dungeons) {
@@ -76,9 +77,29 @@ function solution2(k, dungeons) {
       }
     }
   }
-
+  
   explore(k, 0, idxArr); // 초기 체력 k, 깬 횟수 0으로 탐험 시작
   return answer
 }
 
-solution(80, [[80,20],[50,40],[30,10]])
+function solution3(k, dungeons) {
+  let answer = 0
+  const visited = new Array(dungeons.length).fill(false)
+
+  function explore(hp, count) {
+    answer = Math.max(answer, count)
+
+    for (let i = 0; i < dungeons.length; i++) {
+      const [reqHP, usedHP] = dungeons[i]
+
+      if (!visited[i] && hp >= reqHP) {
+        visited[i] = true
+        explore(hp - usedHP, count + 1)
+        visited[i] = false
+      }
+    }
+  }
+
+  explore(k, 0)
+  return answer
+}
