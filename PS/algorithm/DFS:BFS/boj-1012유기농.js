@@ -45,6 +45,7 @@ function getWormNum(M, N, matrix) {
   console.log(wormNum);
 }
 
+// 재귀 DFS 방식임!!! BFS로도 풀어보면 좋을듯 4963은 그렇게 품
 function dfs(M, N, r, c, visited, matrix) {
   visited[r][c] = true
   // let count = 1

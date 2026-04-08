@@ -1,3 +1,6 @@
+// 스택을 활용한 DFS(재귀와 완전 동일)은 시작노드를 스택에 넣고 시작한다.
+// 이후에 꺼내고, 인접 넣고, 꺼낸거 방문처리
+// 이 방식은 한번 들어갔던거 다시 들어갈수있음(아직 방문 안했다면) > 중복 발생
 function dfs_with_stack(graph, startNode) {
   const stack = [startNode];
   const visited = new Array(N + 1).fill(false);
@@ -24,4 +27,29 @@ function dfs_with_stack(graph, startNode) {
       }
     }
   }
+}
+
+function DFSwithStackOptimized(graph, startNode) {
+  const stack = [startNode];
+  const visited = new Array(graph.length).fill(false);
+  // const path = [];
+
+  // 1. 시작 노드를 스택에 넣으면서 동시에 방문 처리!
+  visited[startNode] = true;
+
+  while (stack.length > 0) {
+    const curr = stack.pop();
+    // path.push(curr); // 방문한 노드 기록
+    console.log(`${curr}번 노드 실제 방문 중`);
+
+    for (const next of graph[curr]) {
+      // 2. 다음 노드를 스택에 넣기 '직전'에 방문 여부 확인 및 마킹
+      if (!visited[next]) {
+            // "내가 찜했음, 다른 경로나 다른 루프에서 여길 넣지 마!"
+            visited[next] = true; 
+            stack.push(next);
+      }
+    }
+  }
+  return path;
 }

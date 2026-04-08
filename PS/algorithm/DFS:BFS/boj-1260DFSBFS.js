@@ -24,7 +24,7 @@ function DFS(start) {
 
   visited1[start] = true
   path1 += start + ' '
-  // console.log(`${start} 방문!!`);
+  // console.log(`${start} 방문!!`) ; 
   for(const next of graph[start]) {
     if(!visited1[next]) {
       DFS(next)
@@ -41,19 +41,19 @@ let path2 = ''
 function BFS(start) {
   const queue = []
 
-  path2 += start + ' '
+  // path2 += start + ' '
   visited2[start] = true
   queue.push(start)
 
   while(queue.length != 0) {
     const v = queue.shift()
     // console.log(v);
+    path2 += nextNode + ' '
 
     for (const nextNode of graph[v]) {
       if(!visited2[nextNode]) {
         queue.push(nextNode)
         visited2[nextNode] = true
-        path2 += nextNode + ' '
       }
     }
   }
